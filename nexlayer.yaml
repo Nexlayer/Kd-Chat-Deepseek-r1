@@ -1,0 +1,15 @@
+application:
+  name: Kd Chat
+  pods:
+  - name: ollama
+    image: katieharris/ollama:deepseek-r1
+    servicePorts:
+    - 11434
+  - name: kd-chat
+    path: /
+    image: katieharris/kd-chat:deepseek-r1
+    vars:
+      REACT_APP_API_URL: http://ollama.pod:11434
+      NODE_ENV: production
+    servicePorts:
+    - 3000
